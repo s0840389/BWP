@@ -1,0 +1,1657 @@
+Delivered-To: jamiewlenney@gmail.com
+Received: by 2002:a05:6a10:6754:0:0:0:0 with SMTP id w20csp5847997pxu;
+        Tue, 7 Dec 2021 03:05:31 -0800 (PST)
+X-Google-Smtp-Source: ABdhPJxqVfaOiXZ9NJnIe4iGIBA8vKq0NJU+p2wUzeDSKep08DzfRH5Ykh0RKJBf7PtVihfZYFEZ
+X-Received: by 2002:a5d:6849:: with SMTP id o9mr49664508wrw.515.1638875130866;
+        Tue, 07 Dec 2021 03:05:30 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1638875130; cv=none;
+        d=google.com; s=arc-20160816;
+        b=J+ZQD7uo16qoMjTkH/VlQsly6cC9+GGMnYmYuoZ80i52t5uw2ugcAFP0aPK/jUS5ww
+         DnvM6pcHflzZ2DINvW0U3gcCrf36D40/f+qqh0cDYl+vETs7bDAotnIbvqtPC1fa+wGA
+         a69dxahzRJb10EFElKTXovu6Boqqu17KOD7etrlUkkgF1LK4iAgF7Eg/1mWlxvg/VKCF
+         rh0QTUm6v7ahlUxG3unOJ+ic1C4Va3TtvmbaEelQFdlf6Zh+7vaF/i3uwPeXuX6qimPQ
+         ydl5lcj0QR+cYJzBqdy6wMKvG7A/E4AQo3J4IG/7FuqeJAcjdoE7uFZ3HSZcxw5kWj5/
+         9wEg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=content-language:mime-version:accept-language:in-reply-to
+         :references:message-id:date:thread-index:thread-topic:subject:to
+         :from:dkim-signature;
+        bh=uhk9Nxn9GV14xe6C8jfjGN/hFrzRglmnPbsyUf5rjWg=;
+        b=QryAWTl1Z8/4N+/Bd1skRmtutbZmKWxZn6iHHivgtt1TxoJH2MRrkg8S32WywRZIfv
+         2qNHMjh27Hu2+eqw2LYs/7MRRRif4Jnf7adczs9Dk7PX6j8OfYRG9u11oF3vfCFhQ3CF
+         xumi9dIPG4ASE4llNlNXKldIjTg1XnaFNDibt8SGFLPCNd3G9LG3kSstB8VB+9pkWyxN
+         4E6neA49+d5SmnwwVyRYkH/Iv7U58aKhb2rGtYLCxWJLwyfDn4YdHVdXvdwjPXpNXjx6
+         7Wr/IYcft9whtAXARGC5Hd8N4M/M4IXxUE0NQ2cM87OpJBd2bctqKiah6ctfcx1zx0t+
+         pvgA==
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@dkim.mimecast.org header.s=201912 header.b="nMQHqQw/";
+       spf=pass (google.com: domain of jamie.lenney@bankofengland.co.uk designates 185.58.86.167 as permitted sender) smtp.mailfrom=jamie.lenney@bankofengland.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=bankofengland.co.uk
+Return-Path: <jamie.lenney@bankofengland.co.uk>
+Received: from eu-smtp-delivery-167.mimecast.com (eu-smtp-delivery-167.mimecast.com. [185.58.86.167])
+        by mx.google.com with ESMTPS id u4si22369795wrr.916.2021.12.07.03.05.30
+        for <jamiewlenney@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 07 Dec 2021 03:05:30 -0800 (PST)
+Received-SPF: pass (google.com: domain of jamie.lenney@bankofengland.co.uk designates 185.58.86.167 as permitted sender) client-ip=185.58.86.167;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@dkim.mimecast.org header.s=201912 header.b="nMQHqQw/";
+       spf=pass (google.com: domain of jamie.lenney@bankofengland.co.uk designates 185.58.86.167 as permitted sender) smtp.mailfrom=jamie.lenney@bankofengland.co.uk;
+       dmarc=pass (p=NONE sp=NONE dis=NONE) header.from=bankofengland.co.uk
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=dkim.mimecast.org;
+	s=201912; t=1638875130;
+	h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+	 to:to:cc:mime-version:mime-version:content-type:content-type:
+	 in-reply-to:in-reply-to:references:references;
+	bh=uhk9Nxn9GV14xe6C8jfjGN/hFrzRglmnPbsyUf5rjWg=;
+	b=nMQHqQw/92hLd3aKggHv2CMLVHBkQQPTG4Vyz+cEUKSIdjJpHT2KdIzYPORpyjoRIpcaqs
+	es+KtRZfpZrfTz3hY/DjKyKgZoQGEB9Nyn6+Imwa7e/35T7/vzcbUNFK9JWy7dlhixi6rA
+	bfmknhmXSq1DUq83B+q/zvmoVOwYvw8HjGe+NxF0gAvIIh9XHukXTMPb68096ZkfJIl0yE
+	/GCTgVQWysb3tjDGxlMXXMxuYhdRDuSxrLm3oTRVEuMAWcOXgrg9CHxuMECNf+bQlhUtWY
+	FB4MQ7UJHqFe4L68UfMbSyrhjM+sMStC6UYyiJ97m5S7dX4EgfCbdNE47KmMkQ==
+Received: from emcsw-ll-seg04.bankofengland.co.uk (194.75.135.166
+ [194.75.135.166]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ uk-mta-3-nkiI1Qd5NbSZmv87aIdAaA-1; Tue, 07 Dec 2021 11:05:29 +0000
+X-MC-Unique: nkiI1Qd5NbSZmv87aIdAaA-1
+Received: from EMSXS-LW-EXCH02.boe.bankofengland.co.uk (unknown [172.18.2.94])
+	(using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+	(No client certificate requested)
+	by emcsw-ll-seg04.bankofengland.co.uk (MTA) with ESMTPS id 4J7csN3Pk2z1NB2w
+	for <jamiewlenney@gmail.com>; Tue,  7 Dec 2021 11:05:28 +0000 (GMT)
+Received: from EMSXS-LW-EXCH02.boe.bankofengland.co.uk (10.92.33.141) by
+ EMSXS-LW-EXCH02.boe.bankofengland.co.uk (10.92.33.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.2308.8; Tue, 7 Dec 2021 11:05:28 +0000
+Received: from EMSXS-LW-SMTP01.boe.bankofengland.co.uk (10.92.1.21) by
+ EMSXS-LW-EXCH02.boe.bankofengland.co.uk (10.92.33.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id
+ 15.1.2308.8 via Frontend Transport; Tue, 7 Dec 2021 11:05:27 +0000
+Received: from EMSXS-LW-MET03.dmz.bankofengland.co.uk (172.17.2.80) by
+ EMSXS-LW-SMTP01.boe.bankofengland.co.uk (10.92.1.21) with Microsoft SMTP
+ Server (TLS) id 14.3.498.0; Tue, 7 Dec 2021 11:05:27 +0000
+Received: from GBR01-LO2-obe.outbound.protection.outlook.com (172.17.2.97) by
+ mailedge.bankofengland.co.uk (172.17.2.109) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.1.2308.8; Tue, 7 Dec 2021 11:05:27 +0000
+Received: from LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:179::9)
+ by LO2P265MB2927.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:17f::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.4734.20; Tue, 7 Dec
+ 2021 11:05:26 +0000
+Received: from LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::96a:4e0c:acc0:2d2a]) by LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM
+ ([fe80::96a:4e0c:acc0:2d2a%5]) with mapi id 15.20.4755.022; Tue, 7 Dec 2021
+ 11:05:25 +0000
+From: "Lenney, Jamie" <Jamie.Lenney@bankofengland.co.uk>
+To: "jamiewlenney@gmail.com" <jamiewlenney@gmail.com>
+Subject: FW: SWP submission - Jamie Lenney
+Thread-Topic: SWP submission - Jamie Lenney
+Thread-Index: Adffut+uIeaFad4uQ7qz2LpfEkGd0wABgU/AAAAOmZAAAAuiIAIcMtTgAAgPOuAAlZ1bIAAsYHqg
+Date: Tue, 7 Dec 2021 11:05:25 +0000
+Message-ID: <LO2P265MB2989564AD3916F8070A52ABFDD6E9@LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM>
+References: <LO2P265MB2989777693169C8BF5A35175DD9F9@LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB0320967B19AB4B6E5EFE8E2DB49F9@LO2P265MB0320.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB2989A7DC4AB32026DC392947DD9F9@LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB03208D960D922E8471C0CF85B49F9@LO2P265MB0320.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB0320A9A7E747CF48CFA8A2D7B46A9@LO2P265MB0320.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB2989E5ABBC95AC2C4D128CD7DD6D9@LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM>
+ <LO2P265MB032094DEFAFCD34D1CA2ADD7B46D9@LO2P265MB0320.GBRP265.PROD.OUTLOOK.COM>
+In-Reply-To: <LO2P265MB032094DEFAFCD34D1CA2ADD7B46D9@LO2P265MB0320.GBRP265.PROD.OUTLOOK.COM>
+Accept-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-titus-metadata-40: eyJDYXRlZ29yeUxhYmVscyI6IiIsIk1ldGFkYXRhIjp7Im5zIjoiaHR0cDpcL1wvd3d3LnRpdHVzLmNvbVwvbnNcL0pMUE9DIiwiaWQiOiIxMzFhNjllNS01NzdiLTQyYzQtODIxNS1hNzljZmY5YmMyMDQiLCJwcm9wcyI6W3sibiI6IkNsYXNzaWZpY2F0aW9uIiwidmFscyI6W3sidmFsdWUiOiJPRkZCIn1dfV19LCJTdWJqZWN0TGFiZWxzIjpbXSwiVE1DVmVyc2lvbiI6IjE1LjkuMTIuMiIsIlRydXN0ZWRMYWJlbEhhc2giOiJZNGpMbURWOFlJK0dpNXZmT0I5MmtUSVVYZStydW9wUWRuQ3pBaHlmNkk0PSJ9
+x-ts-tracking-id: 2DE267F6597E0847A0DF331345826C16.0
+x-boeclassification: OFFB
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3a2cc62b-4640-42aa-92af-08d9b97178de
+x-ms-traffictypediagnostic: LO2P265MB2927:EE_
+x-microsoft-antispam-prvs: <LO2P265MB29279AABCA17AA15218E9057DD6E9@LO2P265MB2927.GBRP265.PROD.OUTLOOK.COM>
+x-ms-oob-tlc-oobclassifiers: OLM:4714
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0
+x-microsoft-antispam-message-info: 3ANerW4NPZuC/xgfUz8fTPMtqfpKviXHWk0INwzjDxRyytNmRKlOtUAceWrKsh8tmOO3nzb3bIkHeol+nz/1Ri3t7WOLkyctlYaYuvVAnEMCPX0t+OI7OZAegUi3OXpjfEVIokz2QGUOERM+E/+NWOTBA55zNJAvmmTDB+ME46c1WBajB7AcOLm2Y7AKCa+OwOCLgryTHNOSyfIrZUpAX5wFRe6YHkHjQkIP0uAk6Aus1eJELupnvVzqveCdDSk3e41khryPV39In11qs/g2awHHYZq19EyAfVGDkRHoR2SJUmbdG/iVpAxRrQu2DCw77yCYDqrfOZqzn7IUzyDYx1V9MhM9BCQTv7w7lIawWGXon7mEtcwWqKBRyi8lBC/Pkqu74w/FFHUvA/MAgdnawxQZiTbO053+oVghyyFWYL5r9oYUepLND+Bp/jKm2ScdTEen42hwJeHZ9JypX+7h7U+Sv+DKc8sl5Jh7io3WeZ09p1ctzaIw9WspkSAK8v6TMuXeNiXf3FNugJlcyn93GMXUvIRiT9Ft6Y/ebfMxfPpojynTTHLodfsm2RACiF23ooGty6kuIOmdjOK8k5SZwgXcCxiMl0xiIeI7fegGBLmDddZ3Z4mCFgHXk35KzbHK1Y7vyqK4ZeOnWvT1i8Ia/tCTfUvefgen/DodM3GVDS30dyQ3nvOPPZlodAYdj5220pIaqa9Al4qmLcLV1ojMDG0Vr9n5wpyxj6oSdHjaoa1P/uXJaZe9WQbvbRtjcacEvhAgHr3dtoFW6EGN8DUTS65GGl0uh2KtC6YatSGRq6txYiBImyeYq4rHIV+r1+1s
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(366004)(76116006)(66556008)(55016003)(186003)(71200400001)(66946007)(8936002)(52536014)(64756008)(86362001)(2906002)(66446008)(508600001)(38070700005)(8676002)(30864003)(15974865002)(83380400001)(66476007)(6506007)(26005)(6916009)(38100700002)(166002)(316002)(53546011)(122000001)(33656002)(9686003)(7696005)(5660300002)(10412655002)(579004)(559001);DIR:OUT;SFP:1101
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?Windows-1252?Q?AIMxU4Zq8iogAbI8LFrUyh9wStbUflTqxP9bSp5PIhkqbyXbCS/16xQU?=
+ =?Windows-1252?Q?GtUi046oAgtyLX9rSI5tgaQTXrOEVsD+4GMyqF4f3HdqDOVV1Ikw/ytX?=
+ =?Windows-1252?Q?PfhEeLiXYOi8td2I33TsdZKdLBM0b8vc1D4woIPj8801FzOMyAqFLDLh?=
+ =?Windows-1252?Q?traCDo5vtSX42bp8ULURKk0EOKkL274hYXVTJNzOfRGcwASU/WHg/hkq?=
+ =?Windows-1252?Q?j13wZmAxoDSAB/YQlwJNUcjrXppvCNAFa5FSyIeFry7qVYqR3y4Glw+q?=
+ =?Windows-1252?Q?U+r6260ZzLo5PBfLkFthZ2X69dZ+0Cj/Kh+ph3lsqmx/YrNH4Gl26Dou?=
+ =?Windows-1252?Q?oHMDKV9yBl3MLSYzf0vvRxqCY0PwauhU+nrohxaG0meFft1HuNjcllXI?=
+ =?Windows-1252?Q?pVKzElKQgqVV1cd1oW//KMh5VEGus8EZXgEQzWkfv8xZF2edsiz8dPi5?=
+ =?Windows-1252?Q?DFgRMUWtaQ84rjEE87mp2E4gIVIAMOQ2eYYPORQrIk1/VfkGgl1J6Rp/?=
+ =?Windows-1252?Q?qL3Qld3SihLl6z+UnUcdGXulewKxoXUqlLVZFHaNRAtFJZwRsC+4Kxf5?=
+ =?Windows-1252?Q?TyUl6Wnzk7LDb7JgdY+FWMZ1eCLfZA3qfv8BtQfmEzeKVXbhzxd9alHA?=
+ =?Windows-1252?Q?bctzv4983b8H7k5FyPtZVbgFs6SKRYJ2U1XJ9f5nXRb/DBxOh104OIXu?=
+ =?Windows-1252?Q?WdvADf/IcMBGbBbHRVLAWk9IimQzJsDvjv5bovlYf2DHjMgRhBDyYZDh?=
+ =?Windows-1252?Q?ofDNiHY9UsOBwToMjohYsHtVQEQaNEZADSYdfii8yBeQrJ75aErs68UW?=
+ =?Windows-1252?Q?aA1guWKSQLt1U9JKm4O6IjAWQ3ZSnV1d6Lze38UNzECl9MEO5rM/hoeA?=
+ =?Windows-1252?Q?Xu2KsASs5m0DQxrZHTorBfnqCkZGTFNqAO7qtqxxgTisSYxvelPP1Aqi?=
+ =?Windows-1252?Q?daxm1qsXb/WYp5YGEtJrFhITMCw0wf4CtT8XJ6wb/ZqSwICkwPUlXbqD?=
+ =?Windows-1252?Q?AJLnQKHsjphT6mU1IXpvBWR+7KP9ojEo2LC9vigOEBGoB+WoVd+yI0Yy?=
+ =?Windows-1252?Q?CV5WxJ/hi5aqjrkqASDpcy6QqXQwVD4yLq8TfRaIXQBfRN8YZh/BuJtN?=
+ =?Windows-1252?Q?V7Jr14uodi40d0BcrZvIHE7a8JKXj93fsXBW9k/E4d2H/I2MhHlbsyNB?=
+ =?Windows-1252?Q?oANKiOTyWxOSYCWxfhfP9DhbgkuIhF7YnzykreG7sMlbbdLWaiHO/znH?=
+ =?Windows-1252?Q?tKZJDM5E4qy7sV8EKR1QENuB3LMtSagmtKMtGGFCP3xG1xGf7DWVZsjL?=
+ =?Windows-1252?Q?Ai3lIXMrNhT45liMcSBfbxUbOtDrxsXKqimIWzrmbQlDuVqUMui8H1xI?=
+ =?Windows-1252?Q?wmMnRXC7dN724Jjri+4+mJsbEA4I2rJlpenueCbnwbku0wV+IjX+t0Kl?=
+ =?Windows-1252?Q?6KXY+M6mYLwgDLSvQZI8N94BEwn7FXb2PVlZO44g6qSFWMEttwlQoJkx?=
+ =?Windows-1252?Q?SGqpoG7qabXGr7doslAgb7zoYGWBHe1qY0qOguhhNTz2NvX10lDgGK8S?=
+ =?Windows-1252?Q?/+/kmmbLDo/E1opLBuiLzvl6q0pxFWRpywPhGcxeOM0luviVOfZ5MA1C?=
+ =?Windows-1252?Q?Ob8HYGJmrEjoO+jBmMXFyDRoTxaUO5IfM+9bNvHQUr3GGN6Bf8Omdo/t?=
+ =?Windows-1252?Q?QMgJlLmXSulqxYUeJP/snZ8kpVT+aQFmiYW31vvlWv7C4uAzABRciTQr?=
+ =?Windows-1252?Q?VQhwmdvvnr/3OIYwhYchqySSuLOUl2tLHRFhtnyST6RMp+f5z2FJpeKC?=
+ =?Windows-1252?Q?LMpD8xYBSUZ38t1hPO1kwQGKrjGlLGo7Jc/VWRxFAg04laXX?=
+x-ms-exchange-crosstenant-authas: Internal
+x-ms-exchange-crosstenant-authsource: LO2P265MB2989.GBRP265.PROD.OUTLOOK.COM
+x-ms-exchange-crosstenant-network-message-id: 3a2cc62b-4640-42aa-92af-08d9b97178de
+x-ms-exchange-crosstenant-originalarrivaltime: 07 Dec 2021 11:05:25.9642
+ (UTC)
+x-ms-exchange-crosstenant-fromentityheader: Hosted
+x-ms-exchange-crosstenant-id: 4b845bdd-4872-4d8c-8b5e-077db08774cc
+x-ms-exchange-crosstenant-mailboxtype: HOSTED
+x-ms-exchange-crosstenant-userprincipalname: QsxapnOE/e53qTWxyUOpYTDOF3AYZAm85WpT9+Lc7u3Fj6XiEEhlVWTGGwYH0SInwV9+jueh82r1l0DIjGTScTY3AMeMCMYy8Adex0L+V6sNfQHXaQzkgUpISGoZrmjI
+x-ms-exchange-transport-crosstenantheadersstamped: LO2P265MB2927
+MIME-Version: 1.0
+X-OriginatorOrg: bankofengland.co.uk
+x-msw-jemd-newsletter: false
+Authentication-Results: relay.mimecast.com;
+	auth=pass smtp.auth=C67A139 smtp.mailfrom=jamie.lenney@bankofengland.co.uk
+X-Mimecast-Spam-Score: 0
+X-Mimecast-Originator: bankofengland.co.uk
+Content-Language: en-US
+Content-Type: multipart/alternative;
+	boundary="_000_LO2P265MB2989564AD3916F8070A52ABFDD6E9LO2P265MB2989GBRP_"
+
+--_000_LO2P265MB2989564AD3916F8070A52ABFDD6E9LO2P265MB2989GBRP_
+Content-Type: text/plain; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+
+
+From: Cantore, Cristiano <Cristiano.Cantore@bankofengland.co.uk>
+Sent: Monday, December 6, 2021 1:55 PM
+To: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk>
+Subject: RE: SWP submission - Jamie Lenney
+
+Great thanks looking forward to the revision.
+And good luck with your next chapter.
+Cristiano
+
+From: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@b=
+ankofengland.co.uk>>
+Sent: Monday, December 6, 2021 9:47 AM
+To: Cantore, Cristiano <Cristiano.Cantore@bankofengland.co.uk<mailto:Cristi=
+ano.Cantore@bankofengland.co.uk>>
+Subject: RE: SWP submission - Jamie Lenney
+
+Thank you Cristiano.
+Those are useful comments and I will incorporate them this week before resu=
+bmitting. Thank you for spotting the typos as well, I can never find the fi=
+nal few no matter how hard I try.
+On future research plans. Well I=92d of been delighted to talk (or work) wi=
+th you on these modelling topics as you=92re right we do share interests an=
+d I=92ve read a number of your papers over the years. Unfortunately I=92ve =
+decided to move in a different (non-academic) direction career wise in the =
+new year and will be leaving the Bank. I=92d spent quite a bit of time on t=
+his HANK stuff and so wanted a paper to show for it before I left.
+Thanks,
+Jamie
+Comments response
+-Your model predicts a dampening in consumption inequality with respect to =
+the standard set up. But we know from empirical evidence (Coibion et al. 20=
+17<https://www.sciencedirect.com/science/article/pii/S0304393217300466>) th=
+at this is actually quite pronounced in the data. Is this therefore another=
+ drawback of the model together with the issues with data consistency on th=
+e supply side?
+I=92m not sure. Both of the models still give a rise in consumption inequal=
+ity in the empirical ball park of what Coibion finds. The alternate (YN) mo=
+del impulse response is smoother which is arguably a better result than the=
+ standard model gives. I=92ll add a bit of discussion on this around the fi=
+gure.
+-You might want to cite the following paper in your literature review: Chu =
+2020<https://www.sciencedirect.com/science/article/pii/S0165176520301300>. =
+Also I wanted to flag this<https://zheshengqiu.weebly.com/uploads/1/1/8/3/1=
+18397802/last_presentation_in_hk.pdf>. Is been around for quite some time b=
+ut they don=92t seem to have a draft yet.
+Thanks, not sure how I missed the Chu paper. Yeah Victor=92s idea are inter=
+esting on this and I think he is on the right track. Was probably a directi=
+on I wanted to go in, in terms of looking at procyclical mark-ups.
+-This is my curiosity: why using GHH preferences? What is the reason to kil=
+l wealth effect of labor supply here? Is it crucial?
+The main reason is computational ease. Bayer et al have this footnote:
+The assumption of GHH preferences is mainly motivated by the fact that many=
+ estimated DSGE models of business cycles find small aggregate wealth effec=
+ts in the labor supply; see, e.g., Born and Pfeifer (2014). It also simplif=
+ies the numerical analysis somewhat. Unfortunately, it is not feasible to e=
+stimate the flexible form of preference of Jaimovich and Rebelo (2009), whi=
+ch also encompasses King et al. (1988) preferences. This would require solv=
+ing the stationary equilibrium in every likelihood evaluation, which is sub=
+stantially more time consuming than solving for the dynamics around this eq=
+uilibrium.
+Is it crucial? Well it does not effect the overall labour share dynamics an=
+d role for capital income as that is driven by my results in section 3. It =
+of course can matter and was the subject of significant scrutiny in Broer e=
+t al in terms of the wealth effect of capital income in response to a monet=
+ary policy shock. But their results relied on specific calibrations and hig=
+hlighted the necessity to have wage stickiness for plausible transmission o=
+f a monetary policy shock. Depending on different calibrations wealth effec=
+ts would affect the overall aggregate response comparison between the model=
+s, though the fact I have quite sticky wages will dampen this. I=92ll think=
+ about this more and perhaps work in some discussion if I can do so cleanly=
+.
+-Here I am doing some shameless self-promotion but I have a recent paper<ht=
+tps://www.sciencedirect.com/science/article/pii/S0304393221000040> using a =
+capitalists/workers set up that is a bit different from Broer et al. when w=
+e can actually approximate quite well the iMPCs of a HANK set up. I am not =
+suggesting to re-do the analysis with our model but maybe you want to have =
+a look at it and cite it. This paper is also quite relevant here because we=
+ show, contrary to what other people have found and of what you say in the =
+draft, that the labor share is procyclical to a government spending shock. =
+So I would be careful is saying that the analysis to a Monetary Policy shoc=
+k is robust to other demand shock (see footnote 21 and section 4.3)
+I know this paper but it=92s been a while since I read it (or an earlier dr=
+aft of it). I=92d remembered/focused on the final takeaway (about matching =
+HANK models but being tractable). Will bring it in to the discussion in sec=
+tion 4.3
+Thanks,
+Jamie
+From: Cantore, Cristiano <Cristiano.Cantore@bankofengland.co.uk<mailto:Cris=
+tiano.Cantore@bankofengland.co.uk>>
+Sent: Friday, December 3, 2021 11:42 AM
+To: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@ban=
+kofengland.co.uk>>
+Subject: RE: SWP submission - Jamie Lenney
+
+Hi Jamie
+I really enjoyed reading the paper which is very well written and executed.=
+ I am impressed by the work you have done and as you can imagine this is a =
+topic I am very interested in.
+Except for a few typos I found that I will list at the end of this email I =
+am happy for the SWP to come out in the current form if you want. But I als=
+o add a few comments which is up to you to decide if you want to take them =
+on board.
+When resubmitting the final draft please also look at the guidelines for th=
+e research summaries, especially for the key messages. Current ones are not=
+ in line because too long.
+More generally I=92d be interested to chat with you about your future resea=
+rch plans as it seems that our research interest overlap!
+
+Best
+Cristiano
+
+Main Comments
+-Your model predicts a dampening in consumption inequality with respect to =
+the standard set up. But we know from empirical evidence (Coibion et al. 20=
+17<https://www.sciencedirect.com/science/article/pii/S0304393217300466>) th=
+at this is actually quite pronounced in the data. Is this therefore another=
+ drawback of the model together with the issues with data consistency on th=
+e supply side?
+-You might want to cite the following paper in your literature review: Chu =
+2020<https://www.sciencedirect.com/science/article/pii/S0165176520301300>. =
+Also I wanted to flag this<https://zheshengqiu.weebly.com/uploads/1/1/8/3/1=
+18397802/last_presentation_in_hk.pdf>. Is been around for quite some time b=
+ut they don=92t seem to have a draft yet.
+-This is my curiosity: why using GHH preferences? What is the reason to kil=
+l wealth effect of labor supply here? Is it crucial?
+-Here I am doing some shameless self-promotion but I have a recent paper<ht=
+tps://www.sciencedirect.com/science/article/pii/S0304393221000040> using a =
+capitalists/workers set up that is a bit different from Broer et al. when w=
+e can actually approximate quite well the iMPCs of a HANK set up. I am not =
+suggesting to re-do the analysis with our model but maybe you want to have =
+a look at it and cite it. This paper is also quite relevant here because we=
+ show, contrary to what other people have found and of what you say in the =
+draft, that the labor share is procyclical to a government spending shock. =
+So I would be careful is saying that the analysis to a Monetary Policy shoc=
+k is robust to other demand shock (see footnote 21 and section 4.3)
+-I found the figures a bit confusing. I would have used a different color f=
+or different types of models RANK vs RANK-YN, TANK vs TANK-YN etc.. as well=
+ as these acronyms in the legends,
+Typos
+-Eq 8) pag 8: r_{a,ss} not defined when showing the equation.
+-Eq 9) Delta not defined
+-pag 12, first sentence section 2.5 remove =91is=92 after model.
+-pag. 18 I believe that it should be \Delta=3D0.23 instead of \tau.
+-Fig 3 the two solid lines of consumption of workers are almost indistingui=
+shable and you cannot really see the blue one. Maybe use different line sty=
+les
+-pag 23 check that the reference to fig 5 is correct.
+
+From: Cantore, Cristiano
+Sent: Monday, November 22, 2021 4:53 PM
+To: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@ban=
+kofengland.co.uk>>
+Subject: RE: SWP submission - Jamie Lenney
+
+I did see that, that=92s why I got it.
+Looking forward to read it
+
+
+From: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@b=
+ankofengland.co.uk>>
+Sent: Monday, November 22, 2021 4:52 PM
+To: Cantore, Cristiano <Cristiano.Cantore@bankofengland.co.uk<mailto:Cristi=
+ano.Cantore@bankofengland.co.uk>>
+Subject: RE: SWP submission - Jamie Lenney
+
+Great. As you will see your work was a key piece of inspiration.
+
+From: Cantore, Cristiano <Cristiano.Cantore@bankofengland.co.uk<mailto:Cris=
+tiano.Cantore@bankofengland.co.uk>>
+Sent: Monday, November 22, 2021 4:50 PM
+To: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@ban=
+kofengland.co.uk>>; SWP editors <SWP-editors@bankofengland.co.uk<mailto:SWP=
+-editors@bankofengland.co.uk>>
+Cc: Bracke, Philippe <Philippe.Bracke@bankofengland.co.uk<mailto:Philippe.B=
+racke@bankofengland.co.uk>>; Francis, Bill <Bill.Francis@bankofengland.co.u=
+k<mailto:Bill.Francis@bankofengland.co.uk>>; Freeman, Rebecca <Rebecca.Free=
+man@bankofengland.co.uk<mailto:Rebecca.Freeman@bankofengland.co.uk>>; Hacio=
+glu, Sinem <Sinem.Hacioglu@bankofengland.co.uk<mailto:Sinem.Hacioglu@bankof=
+england.co.uk>>; Joseph, Andreas <Andreas.Joseph@bankofengland.co.uk<mailto=
+:Andreas.Joseph@bankofengland.co.uk>>; Joyce, Mike <Mike.Joyce@bankofenglan=
+d.co.uk<mailto:Mike.Joyce@bankofengland.co.uk>>; Sowerbutts, Rhiannon <Rhia=
+nnon.Sowerbutts@bankofengland.co.uk<mailto:Rhiannon.Sowerbutts@bankofenglan=
+d.co.uk>>; Tracey, Belinda <Belinda.Tracey@bankofengland.co.uk<mailto:Belin=
+da.Tracey@bankofengland.co.uk>>
+Subject: RE: SWP submission - Jamie Lenney
+
+Thanks Jamie
+I have everything that I need for now. I will review it and get back to you=
+ hopefully by the end of next week.
+Cristiano
+
+From: Lenney, Jamie <Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@b=
+ankofengland.co.uk>>
+Sent: Monday, November 22, 2021 4:34 PM
+To: SWP editors <SWP-editors@bankofengland.co.uk<mailto:SWP-editors@bankofe=
+ngland.co.uk>>
+Cc: Bracke, Philippe <Philippe.Bracke@bankofengland.co.uk<mailto:Philippe.B=
+racke@bankofengland.co.uk>>; Cantore, Cristiano <Cristiano.Cantore@bankofen=
+gland.co.uk<mailto:Cristiano.Cantore@bankofengland.co.uk>>; Francis, Bill <=
+Bill.Francis@bankofengland.co.uk<mailto:Bill.Francis@bankofengland.co.uk>>;=
+ Freeman, Rebecca <Rebecca.Freeman@bankofengland.co.uk<mailto:Rebecca.Freem=
+an@bankofengland.co.uk>>; Hacioglu, Sinem <Sinem.Hacioglu@bankofengland.co.=
+uk<mailto:Sinem.Hacioglu@bankofengland.co.uk>>; Joseph, Andreas <Andreas.Jo=
+seph@bankofengland.co.uk<mailto:Andreas.Joseph@bankofengland.co.uk>>; Joyce=
+, Mike <Mike.Joyce@bankofengland.co.uk<mailto:Mike.Joyce@bankofengland.co.u=
+k>>; Sowerbutts, Rhiannon <Rhiannon.Sowerbutts@bankofengland.co.uk<mailto:R=
+hiannon.Sowerbutts@bankofengland.co.uk>>; Tracey, Belinda <Belinda.Tracey@b=
+ankofengland.co.uk<mailto:Belinda.Tracey@bankofengland.co.uk>>
+Subject: SWP submission - Jamie Lenney
+
+Dear SWP editors,
+I attach my paper on Demand shocks, the labour share and HANK models for su=
+bmission as a SWP. This paper has been closely reviewed by my advisor Ralph=
+ Luetticke who is prominent in this literature, as well as staff members an=
+d students in the UCL department at student workshops, and informally by Ba=
+nk research staff. As such I will not request a further peer review. I also=
+ attach a research summary and confidentially form signed off by Jonathan H=
+askel (my defacto HOD). Please let me know if you have any further question=
+s.
+Sincerely,
+Jamie
+
+
+Jamie Lenney
+Economist
+Bank of England | Threadneedle Street | London | EC2R 8AH
+Email: Jamie.Lenney@bankofengland.co.uk<mailto:Jamie.Lenney@bankofengland.c=
+o.uk>
+Tel: 0203 461 5947
+
+***************************************************************************=
+********
+This e-mail (including any attachments) is intended only for the addressee(=
+s) named above. If you receive this e-mail in error, please immediately con=
+tact the sender and delete this e-mail. Unauthorised use, disclosure, acces=
+s to, storage or copying of this email and any attachments is not permitted=
+ and may be unlawful. The Bank of England is located at Threadneedle Street=
+, London EC2R 8AH. The Prudential Regulation Authority is located at 20 Moo=
+rgate, London EC2R 6DA. Please visit www.bankofengland.co.uk.
+***************************************************************************=
+********
+
+--_000_LO2P265MB2989564AD3916F8070A52ABFDD6E9LO2P265MB2989GBRP_
+Content-Type: text/html; charset=WINDOWS-1252
+Content-Transfer-Encoding: quoted-printable
+
+<html xmlns:v=3D"urn:schemas-microsoft-com:vml" xmlns:o=3D"urn:schemas-micr=
+osoft-com:office:office" xmlns:w=3D"urn:schemas-microsoft-com:office:word" =
+xmlns:m=3D"http://schemas.microsoft.com/office/2004/12/omml" xmlns=3D"http:=
+//www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3DWindows-1=
+252">
+<meta name=3D"Generator" content=3D"Microsoft Word 15 (filtered medium)">
+<style><!--
+/* Font Definitions */
+@font-face
+=09{font-family:Wingdings;
+=09panose-1:5 0 0 0 0 0 0 0 0 0;}
+@font-face
+=09{font-family:"Cambria Math";
+=09panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+=09{font-family:Calibri;
+=09panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+=09{font-family:Garamond;
+=09panose-1:2 2 4 4 3 3 1 1 8 3;}
+/* Style Definitions */
+p.MsoNormal, li.MsoNormal, div.MsoNormal
+=09{margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;}
+h1
+=09{mso-style-priority:9;
+=09mso-style-link:"Heading 1 Char";
+=09margin-top:24.0pt;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09text-align:left;
+=09line-height:normal;
+=09page-break-after:avoid;
+=09font-size:12.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#244061;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+h2
+=09{mso-style-priority:9;
+=09mso-style-link:"Heading 2 Char";
+=09margin-top:10.0pt;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09text-align:left;
+=09line-height:normal;
+=09page-break-after:avoid;
+=09font-size:12.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#17365D;
+=09mso-fareast-language:EN-US;
+=09font-weight:normal;}
+h3
+=09{mso-style-priority:9;
+=09mso-style-link:"Heading 3 Char";
+=09margin-top:10.0pt;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09text-align:left;
+=09line-height:normal;
+=09page-break-after:avoid;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+h4
+=09{mso-style-priority:9;
+=09mso-style-link:"Heading 4 Char";
+=09margin-top:10.0pt;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:0cm;
+=09text-align:left;
+=09line-height:normal;
+=09page-break-after:avoid;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;
+=09font-weight:normal;
+=09font-style:italic;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+=09{mso-style-priority:10;
+=09mso-style-link:"Title Char";
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:15.0pt;
+=09margin-left:0cm;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:16.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#548DD4;
+=09letter-spacing:.25pt;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+=09{mso-style-priority:10;
+=09mso-style-link:"Title Char";
+=09mso-style-type:export-only;
+=09margin:0cm;
+=09margin-bottom:.0001pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:16.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#548DD4;
+=09letter-spacing:.25pt;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+=09{mso-style-priority:10;
+=09mso-style-link:"Title Char";
+=09mso-style-type:export-only;
+=09margin:0cm;
+=09margin-bottom:.0001pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:16.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#548DD4;
+=09letter-spacing:.25pt;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+=09{mso-style-priority:10;
+=09mso-style-link:"Title Char";
+=09mso-style-type:export-only;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:15.0pt;
+=09margin-left:0cm;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:16.0pt;
+=09font-family:"Arial",sans-serif;
+=09color:#548DD4;
+=09letter-spacing:.25pt;
+=09mso-fareast-language:EN-US;
+=09font-weight:bold;}
+a:link, span.MsoHyperlink
+=09{mso-style-priority:99;
+=09color:blue;
+=09text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+=09{mso-style-priority:99;
+=09color:purple;
+=09text-decoration:underline;}
+p
+=09{mso-style-priority:99;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:9.5pt;
+=09margin-left:0cm;
+=09text-align:justify;
+=09line-height:9.5pt;
+=09font-size:7.5pt;
+=09font-family:"Times New Roman",serif;
+=09mso-fareast-language:EN-US;}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+=09{mso-style-priority:34;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:36.0pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParag=
+raphCxSpFirst
+=09{mso-style-priority:34;
+=09mso-style-type:export-only;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:0cm;
+=09margin-left:36.0pt;
+=09margin-bottom:.0001pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListPar=
+agraphCxSpMiddle
+=09{mso-style-priority:34;
+=09mso-style-type:export-only;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:0cm;
+=09margin-left:36.0pt;
+=09margin-bottom:.0001pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagra=
+phCxSpLast
+=09{mso-style-priority:34;
+=09mso-style-type:export-only;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:10.0pt;
+=09margin-left:36.0pt;
+=09mso-add-space:auto;
+=09text-align:left;
+=09line-height:normal;
+=09font-size:10.0pt;
+=09font-family:"Arial",sans-serif;
+=09mso-fareast-language:EN-US;}
+span.Heading1Char
+=09{mso-style-name:"Heading 1 Char";
+=09mso-style-priority:9;
+=09mso-style-link:"Heading 1";
+=09font-family:"Times New Roman",serif;
+=09color:#244061;
+=09font-weight:bold;}
+span.Heading2Char
+=09{mso-style-name:"Heading 2 Char";
+=09mso-style-priority:9;
+=09mso-style-link:"Heading 2";
+=09font-family:"Times New Roman",serif;
+=09color:#17365D;}
+span.Heading3Char
+=09{mso-style-name:"Heading 3 Char";
+=09mso-style-priority:9;
+=09mso-style-link:"Heading 3";
+=09font-family:"Times New Roman",serif;
+=09font-weight:bold;}
+span.Heading4Char
+=09{mso-style-name:"Heading 4 Char";
+=09mso-style-priority:9;
+=09mso-style-link:"Heading 4";
+=09font-family:"Times New Roman",serif;
+=09font-style:italic;}
+span.TitleChar
+=09{mso-style-name:"Title Char";
+=09mso-style-priority:10;
+=09mso-style-link:Title;
+=09font-family:"Times New Roman",serif;
+=09color:#548DD4;
+=09letter-spacing:.25pt;
+=09font-weight:bold;}
+p.msonormal0, li.msonormal0, div.msonormal0
+=09{mso-style-name:msonormal;
+=09mso-style-priority:99;
+=09margin-top:0cm;
+=09margin-right:0cm;
+=09margin-bottom:9.5pt;
+=09margin-left:0cm;
+=09text-align:justify;
+=09line-height:9.5pt;
+=09font-size:7.5pt;
+=09font-family:"Times New Roman",serif;
+=09mso-fareast-language:EN-US;}
+span.EmailStyle26
+=09{mso-style-type:personal;
+=09font-family:"Garamond",serif;
+=09color:black;}
+span.EmailStyle27
+=09{mso-style-type:personal;
+=09font-family:"Arial",sans-serif;
+=09color:#1F497D;}
+span.EmailStyle28
+=09{mso-style-type:personal;
+=09font-family:"Garamond",serif;
+=09color:#7030A0;}
+span.EmailStyle29
+=09{mso-style-type:personal;
+=09font-family:"Arial",sans-serif;
+=09color:#1F497D;}
+span.EmailStyle30
+=09{mso-style-type:personal;
+=09font-family:"Arial",sans-serif;
+=09color:#1F497D;}
+span.EmailStyle31
+=09{mso-style-type:personal;
+=09font-family:"Garamond",serif;
+=09color:#7030A0;}
+span.EmailStyle32
+=09{mso-style-type:personal;
+=09font-family:"Garamond",serif;
+=09color:black;}
+span.EmailStyle33
+=09{mso-style-type:personal;
+=09font-family:"Arial",sans-serif;
+=09color:#1F497D;}
+span.EmailStyle34
+=09{mso-style-type:personal-reply;
+=09font-family:"Garamond",serif;
+=09color:#7030A0;}
+.MsoChpDefault
+=09{mso-style-type:export-only;
+=09font-size:10.0pt;}
+@page WordSection1
+=09{size:612.0pt 792.0pt;
+=09margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+div.WordSection1
+=09{page:WordSection1;}
+/* List Definitions */
+@list l0
+=09{mso-list-id:3635916;
+=09mso-list-type:hybrid;
+=09mso-list-template-ids:2127833888 134807553 -933729642 134807557 13480755=
+3 134807555 134807557 134807553 134807555 134807557;}
+@list l0:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:35.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l0:level2
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F02D;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:71.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l0:level3
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:107.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l0:level4
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:143.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l0:level5
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:179.15pt;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l0:level6
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:215.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l0:level7
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:251.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l0:level8
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:287.15pt;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l0:level9
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:323.15pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l1
+=09{mso-list-id:112478545;
+=09mso-list-type:hybrid;
+=09mso-list-template-ids:-639483070 134807553 -933729642 134807557 13480755=
+3 134807555 134807557 134807553 134807555 134807557;}
+@list l1:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:35.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l1:level2
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F02D;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:71.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l1:level3
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:107.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l1:level4
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:143.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l1:level5
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:179.0pt;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l1:level6
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:215.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l1:level7
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:251.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l1:level8
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:287.0pt;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l1:level9
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09margin-left:323.0pt;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l2
+=09{mso-list-id:186022683;
+=09mso-list-type:hybrid;
+=09mso-list-template-ids:86825782 -933729642 134807555 134807557 134807553 =
+134807555 134807557 134807553 134807555 134807557;}
+@list l2:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F02D;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l2:level2
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l2:level3
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l2:level4
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l2:level5
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l2:level6
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l2:level7
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l2:level8
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l2:level9
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l3
+=09{mso-list-id:1632783348;
+=09mso-list-type:hybrid;
+=09mso-list-template-ids:1137233056 134807553 134807555 134807557 134807553=
+ 134807555 134807557 134807553 134807555 134807557;}
+@list l3:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l3:level2
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l3:level3
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l3:level4
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l3:level5
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l3:level6
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l3:level7
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l3:level8
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l3:level9
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l4
+=09{mso-list-id:1684357617;
+=09mso-list-type:hybrid;
+=09mso-list-template-ids:-1403746564 134807553 134807555 134807557 13480755=
+3 134807555 134807557 134807553 134807555 134807557;}
+@list l4:level1
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l4:level2
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l4:level3
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l4:level4
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l4:level5
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l4:level6
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+@list l4:level7
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0B7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Symbol;}
+@list l4:level8
+=09{mso-level-number-format:bullet;
+=09mso-level-text:o;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:"Courier New";}
+@list l4:level9
+=09{mso-level-number-format:bullet;
+=09mso-level-text:\F0A7;
+=09mso-level-tab-stop:none;
+=09mso-level-number-position:left;
+=09text-indent:-18.0pt;
+=09font-family:Wingdings;}
+ol
+=09{margin-bottom:0cm;}
+ul
+=09{margin-bottom:0cm;}
+--></style><!--[if gte mso 9]><xml>
+<o:shapedefaults v:ext=3D"edit" spidmax=3D"1026" />
+</xml><![endif]--><!--[if gte mso 9]><xml>
+<o:shapelayout v:ext=3D"edit">
+<o:idmap v:ext=3D"edit" data=3D"1" />
+</o:shapelayout></xml><![endif]-->
+</head>
+<body lang=3D"EN-GB" link=3D"blue" vlink=3D"purple">
+<div class=3D"WordSection1">
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><a=
+ name=3D"_____replyseparator"></a><b><span lang=3D"EN-US" style=3D"font-siz=
+e:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN=
+-GB">From:</span></b><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fa=
+mily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">
+ Cantore, Cristiano &lt;Cristiano.Cantore@bankofengland.co.uk&gt; <br>
+<b>Sent:</b> Monday, December 6, 2021 1:55 PM<br>
+<b>To:</b> Lenney, Jamie &lt;Jamie.Lenney@bankofengland.co.uk&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Great=
+ thanks looking forward to the revision.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">And g=
+ood luck with your next chapter.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Crist=
+iano<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Lenney, Jamie &lt;<a href=3D"mailto:Jamie.Lenney@bankofengland.co.uk">Jami=
+e.Lenney@bankofengland.co.uk</a>&gt;
+<br>
+<b>Sent:</b> Monday, December 6, 2021 9:47 AM<br>
+<b>To:</b> Cantore, Cristiano &lt;<a href=3D"mailto:Cristiano.Cantore@banko=
+fengland.co.uk">Cristiano.Cantore@bankofengland.co.uk</a>&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Thank you Cristiano.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Those are useful comments and I will inco=
+rporate them this week before resubmitting. Thank you for spotting the typo=
+s as well, I can never find the final few no matter
+ how hard I try. <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">On future research plans. Well I=92d of b=
+een delighted to talk (or work) with you on these modelling topics as you=
+=92re right we do share interests and I=92ve read a number
+ of your papers over the years. Unfortunately I=92ve decided to move in a d=
+ifferent (non-academic) direction career wise in the new year and will be l=
+eaving the Bank. I=92d spent quite a bit of time on this HANK stuff and so =
+wanted a paper to show for it before
+ I left. &nbsp;&nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Jamie
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><u><span style=3D"font-size:12.0pt;font-family:&quot=
+;Garamond&quot;,serif;color:#7030A0">Comments response<o:p></o:p></span></u=
+></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Your=
+ model predicts a dampening in consumption inequality with respect to the s=
+tandard set up. But we know from empirical evidence (</span><a href=3D"http=
+s://www.sciencedirect.com/science/article/pii/S0304393217300466"><span styl=
+e=3D"font-size:11.0pt">Coibion
+ et al. 2017</span></a><span style=3D"font-size:11.0pt;color:#1F497D">) tha=
+t this is actually quite pronounced in the data. Is this therefore another =
+drawback of the model together with the issues with data consistency on the=
+ supply side?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#7030A0">I=92m=
+ not sure</span><span style=3D"font-size:11.0pt;color:#1F497D">.
+</span><span style=3D"font-size:11.0pt;color:#7030A0">Both of the models st=
+ill give a rise in consumption inequality in the empirical ball park of wha=
+t Coibion finds. The alternate (YN) model impulse response is smoother whic=
+h is arguably a better result than
+ the standard model gives. I=92ll add a bit of discussion on this around th=
+e figure.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-You =
+might want to cite the following paper in your literature review:
+</span><a href=3D"https://www.sciencedirect.com/science/article/pii/S016517=
+6520301300"><span style=3D"font-size:11.0pt">Chu 2020</span></a><span style=
+=3D"font-size:11.0pt;color:#1F497D">. Also I wanted to flag
+</span><a href=3D"https://zheshengqiu.weebly.com/uploads/1/1/8/3/118397802/=
+last_presentation_in_hk.pdf"><span style=3D"font-size:11.0pt">this</span></=
+a><span style=3D"font-size:11.0pt;color:#1F497D">. Is been around for quite=
+ some time but they don=92t seem to have
+ a draft yet. <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#7030A0">Thank=
+s, not sure how I missed the Chu paper. Yeah Victor=92s idea are interestin=
+g on this and I think he is on the right track. Was probably a direction I =
+wanted to go in, in terms of looking at
+ procyclical mark-ups. <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-This=
+ is my curiosity: why using GHH preferences? What is the reason to kill wea=
+lth effect of labor supply here? Is it crucial?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#7030A0">The m=
+ain reason is computational ease. Bayer et al have this footnote:<o:p></o:p=
+></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:9.0pt;color:#7030A0">The as=
+sumption of GHH preferences is mainly motivated by the fact that many estim=
+ated DSGE models of business cycles find small aggregate wealth effects in =
+the labor supply; see, e.g., Born and
+ Pfeifer (2014). It also simplifies the numerical analysis somewhat. Unfort=
+unately, it is not feasible to estimate the flexible form of preference of =
+Jaimovich and Rebelo (2009), which also encompasses King et al. (1988) pref=
+erences. This would require solving
+ the stationary equilibrium in every likelihood evaluation, which is substa=
+ntially more time consuming than solving for the dynamics around this equil=
+ibrium.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#7030A0">Is it=
+ crucial? Well it does not effect the overall labour share dynamics and rol=
+e for capital income as that is driven by my results in section 3. It of co=
+urse can matter and was the subject
+ of significant scrutiny in Broer et al in terms of the wealth effect of ca=
+pital income in response to a monetary policy shock. But their results reli=
+ed on specific calibrations and highlighted the necessity to have wage stic=
+kiness for plausible transmission
+ of a monetary policy shock. Depending on different calibrations wealth eff=
+ects would affect the overall aggregate response comparison between the mod=
+els, though the fact I have quite sticky wages will dampen this. I=92ll thi=
+nk about this more and perhaps work
+ in some discussion if I can do so cleanly. &nbsp;<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Here=
+ I am doing some shameless self-promotion but I have a recent
+</span><a href=3D"https://www.sciencedirect.com/science/article/pii/S030439=
+3221000040"><span style=3D"font-size:11.0pt">paper</span></a><span style=3D=
+"font-size:11.0pt;color:#1F497D"> using a capitalists/workers set up that i=
+s a bit different from Broer et al. when
+ we can actually approximate quite well the iMPCs of a HANK set up. I am no=
+t suggesting to re-do the analysis with our model but maybe you want to hav=
+e a look at it and cite it. This paper is also quite relevant here because =
+we show, contrary to what other
+ people have found and of what you say in the draft, that the labor share i=
+s procyclical to a government spending shock. So I would be careful is sayi=
+ng that the analysis to a Monetary Policy shock is robust to other demand s=
+hock (see footnote 21 and section
+ 4.3)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#7030A0">I kno=
+w this paper but it=92s been a while since I read it (or an earlier draft o=
+f it). I=92d remembered/focused on the final takeaway (about matching HANK =
+models but being tractable). Will bring
+ it in to the discussion in section 4.3 <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Thanks,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Jamie
+<o:p></o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Cantore, Cristiano &lt;<a href=3D"mailto:Cristiano.Cantore@bankofengland.c=
+o.uk">Cristiano.Cantore@bankofengland.co.uk</a>&gt;
+<br>
+<b>Sent:</b> Friday, December 3, 2021 11:42 AM<br>
+<b>To:</b> Lenney, Jamie &lt;<a href=3D"mailto:Jamie.Lenney@bankofengland.c=
+o.uk">Jamie.Lenney@bankofengland.co.uk</a>&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Hi Ja=
+mie<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">I rea=
+lly enjoyed reading the paper which is very well written and executed. I am=
+ impressed by the work you have done and as you can imagine this is a topic=
+ I am very interested in.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Excep=
+t for a few typos I found that I will list at the end of this email I am ha=
+ppy for the SWP to come out in the current form if you want. But I also add=
+ a few comments which is up to you to
+ decide if you want to take them on board.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">When =
+resubmitting the final draft please also look at the guidelines for the res=
+earch summaries, especially for the key messages. Current ones are not in l=
+ine because too long.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">More =
+generally I=92d be interested to chat with you about your future research p=
+lans as it seems that our research interest overlap!<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Best<=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Crist=
+iano<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><i><span style=3D"font-size:11.0pt;color:#1F497D">Ma=
+in Comments<o:p></o:p></span></i></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Your=
+ model predicts a dampening in consumption inequality with respect to the s=
+tandard set up. But we know from empirical evidence (</span><a href=3D"http=
+s://www.sciencedirect.com/science/article/pii/S0304393217300466"><span styl=
+e=3D"font-size:11.0pt">Coibion
+ et al. 2017</span></a><span style=3D"font-size:11.0pt;color:#1F497D">) tha=
+t this is actually quite pronounced in the data. Is this therefore another =
+drawback of the model together with the issues with data consistency on the=
+ supply side?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-You =
+might want to cite the following paper in your literature review:
+</span><a href=3D"https://www.sciencedirect.com/science/article/pii/S016517=
+6520301300"><span style=3D"font-size:11.0pt">Chu 2020</span></a><span style=
+=3D"font-size:11.0pt;color:#1F497D">. Also I wanted to flag
+</span><a href=3D"https://zheshengqiu.weebly.com/uploads/1/1/8/3/118397802/=
+last_presentation_in_hk.pdf"><span style=3D"font-size:11.0pt">this</span></=
+a><span style=3D"font-size:11.0pt;color:#1F497D">. Is been around for quite=
+ some time but they don=92t seem to have
+ a draft yet. <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-This=
+ is my curiosity: why using GHH preferences? What is the reason to kill wea=
+lth effect of labor supply here? Is it crucial?<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Here=
+ I am doing some shameless self-promotion but I have a recent
+</span><a href=3D"https://www.sciencedirect.com/science/article/pii/S030439=
+3221000040"><span style=3D"font-size:11.0pt">paper</span></a><span style=3D=
+"font-size:11.0pt;color:#1F497D"> using a capitalists/workers set up that i=
+s a bit different from Broer et al. when
+ we can actually approximate quite well the iMPCs of a HANK set up. I am no=
+t suggesting to re-do the analysis with our model but maybe you want to hav=
+e a look at it and cite it. This paper is also quite relevant here because =
+we show, contrary to what other
+ people have found and of what you say in the draft, that the labor share i=
+s procyclical to a government spending shock. So I would be careful is sayi=
+ng that the analysis to a Monetary Policy shock is robust to other demand s=
+hock (see footnote 21 and section
+ 4.3)<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-I fo=
+und the figures a bit confusing. I would have used a different color for di=
+fferent types of models RANK vs RANK-YN, TANK vs TANK-YN etc.. as well as t=
+hese acronyms in the legends,<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Typos=
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Eq 8=
+) pag 8: r_{a,ss} not defined when showing the equation.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Eq 9=
+) Delta not defined<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-pag =
+12, first sentence section 2.5 remove =91is=92 after model.<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-pag.=
+ 18 I believe that it should be \Delta=3D0.23 instead of \tau.<o:p></o:p></=
+span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-Fig =
+3 the two solid lines of consumption of workers are almost indistinguishabl=
+e and you cannot really see the blue one. Maybe use different line styles<o=
+:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">-pag =
+23 check that the reference to fig 5 is correct.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Cantore, Cristiano <br>
+<b>Sent:</b> Monday, November 22, 2021 4:53 PM<br>
+<b>To:</b> Lenney, Jamie &lt;</span><a href=3D"mailto:Jamie.Lenney@bankofen=
+gland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&qu=
+ot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Jamie.Lenney@bankof=
+england.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font=
+-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">I did=
+ see that, that=92s why I got it.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Looki=
+ng forward to read it<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Lenney, Jamie &lt;</span><a href=3D"mailto:Jamie.Lenney@bankofengland.co.u=
+k"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-GB">Jamie.Lenney@bankofengland.co=
+.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;
+<br>
+<b>Sent:</b> Monday, November 22, 2021 4:52 PM<br>
+<b>To:</b> Cantore, Cristiano &lt;</span><a href=3D"mailto:Cristiano.Cantor=
+e@bankofengland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Cristiano=
+.Cantore@bankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-s=
+ize:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:=
+EN-GB">&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0">Great. As you will see your work was a ke=
+y piece of inspiration.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;font-family:&quot;Ga=
+ramond&quot;,serif;color:#7030A0"><o:p>&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Cantore, Cristiano &lt;</span><a href=3D"mailto:Cristiano.Cantore@bankofen=
+gland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&qu=
+ot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Cristiano.Cantore@b=
+ankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt=
+;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt=
+;
+<br>
+<b>Sent:</b> Monday, November 22, 2021 4:50 PM<br>
+<b>To:</b> Lenney, Jamie &lt;</span><a href=3D"mailto:Jamie.Lenney@bankofen=
+gland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&qu=
+ot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Jamie.Lenney@bankof=
+england.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font=
+-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ SWP editors &lt;</span><a href=3D"mailto:SWP-editors@bankofengland.co.uk">=
+<span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&qu=
+ot;,sans-serif;mso-fareast-language:EN-GB">SWP-editors@bankofengland.co.uk<=
+/span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;=
+Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;<br>
+<b>Cc:</b> Bracke, Philippe &lt;</span><a href=3D"mailto:Philippe.Bracke@ba=
+nkofengland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Philippe.Brac=
+ke@bankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11=
+.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB"=
+>&gt;;
+ Francis, Bill &lt;</span><a href=3D"mailto:Bill.Francis@bankofengland.co.u=
+k"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-GB">Bill.Francis@bankofengland.co=
+.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Freeman, Rebecca &lt;</span><a href=3D"mailto:Rebecca.Freeman@bankofenglan=
+d.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;C=
+alibri&quot;,sans-serif;mso-fareast-language:EN-GB">Rebecca.Freeman@bankofe=
+ngland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Hacioglu, Sinem &lt;</span><a href=3D"mailto:Sinem.Hacioglu@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Sinem.Hacioglu@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Joseph, Andreas &lt;</span><a href=3D"mailto:Andreas.Joseph@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Andreas.Joseph@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Joyce, Mike &lt;</span><a href=3D"mailto:Mike.Joyce@bankofengland.co.uk"><=
+span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quo=
+t;,sans-serif;mso-fareast-language:EN-GB">Mike.Joyce@bankofengland.co.uk</s=
+pan></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Sowerbutts, Rhiannon &lt;</span><a href=3D"mailto:Rhiannon.Sowerbutts@bank=
+ofengland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family=
+:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Rhiannon.Sowerb=
+utts@bankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-G=
+B">&gt;;
+ Tracey, Belinda &lt;</span><a href=3D"mailto:Belinda.Tracey@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Belinda.Tracey@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;<br>
+<b>Subject:</b> RE: SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Thank=
+s Jamie<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">I hav=
+e everything that I need for now. I will review it and get back to you hope=
+fully by the end of next week.<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D">Crist=
+iano<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:11.0pt;color:#1F497D"><o:p>=
+&nbsp;</o:p></span></p>
+<div>
+<div style=3D"border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm =
+0cm 0cm">
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><b=
+><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&q=
+uot;,sans-serif;mso-fareast-language:EN-GB">From:</span></b><span lang=3D"E=
+N-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quot;,sans-serif;=
+mso-fareast-language:EN-GB">
+ Lenney, Jamie &lt;</span><a href=3D"mailto:Jamie.Lenney@bankofengland.co.u=
+k"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-GB">Jamie.Lenney@bankofengland.co=
+.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;
+<br>
+<b>Sent:</b> Monday, November 22, 2021 4:34 PM<br>
+<b>To:</b> SWP editors &lt;</span><a href=3D"mailto:SWP-editors@bankofengla=
+nd.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;=
+Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">SWP-editors@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;<br>
+<b>Cc:</b> Bracke, Philippe &lt;</span><a href=3D"mailto:Philippe.Bracke@ba=
+nkofengland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fami=
+ly:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Philippe.Brac=
+ke@bankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11=
+.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB"=
+>&gt;;
+ Cantore, Cristiano &lt;</span><a href=3D"mailto:Cristiano.Cantore@bankofen=
+gland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&qu=
+ot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Cristiano.Cantore@b=
+ankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt=
+;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt=
+;;
+ Francis, Bill &lt;</span><a href=3D"mailto:Bill.Francis@bankofengland.co.u=
+k"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri=
+&quot;,sans-serif;mso-fareast-language:EN-GB">Bill.Francis@bankofengland.co=
+.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&q=
+uot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Freeman, Rebecca &lt;</span><a href=3D"mailto:Rebecca.Freeman@bankofenglan=
+d.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;C=
+alibri&quot;,sans-serif;mso-fareast-language:EN-GB">Rebecca.Freeman@bankofe=
+ngland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-=
+family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Hacioglu, Sinem &lt;</span><a href=3D"mailto:Sinem.Hacioglu@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Sinem.Hacioglu@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Joseph, Andreas &lt;</span><a href=3D"mailto:Andreas.Joseph@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Andreas.Joseph@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Joyce, Mike &lt;</span><a href=3D"mailto:Mike.Joyce@bankofengland.co.uk"><=
+span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Calibri&quo=
+t;,sans-serif;mso-fareast-language:EN-GB">Mike.Joyce@bankofengland.co.uk</s=
+pan></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Ca=
+libri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;;
+ Sowerbutts, Rhiannon &lt;</span><a href=3D"mailto:Rhiannon.Sowerbutts@bank=
+ofengland.co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family=
+:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">Rhiannon.Sowerb=
+utts@bankofengland.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:=
+11.0pt;font-family:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-G=
+B">&gt;;
+ Tracey, Belinda &lt;</span><a href=3D"mailto:Belinda.Tracey@bankofengland.=
+co.uk"><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-family:&quot;Cal=
+ibri&quot;,sans-serif;mso-fareast-language:EN-GB">Belinda.Tracey@bankofengl=
+and.co.uk</span></a><span lang=3D"EN-US" style=3D"font-size:11.0pt;font-fam=
+ily:&quot;Calibri&quot;,sans-serif;mso-fareast-language:EN-GB">&gt;<br>
+<b>Subject:</b> SWP submission - Jamie Lenney<o:p></o:p></span></p>
+</div>
+</div>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Dear SW=
+P editors,
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">I attac=
+h my paper
+<i>on Demand shocks, the labour share and HANK models</i> for submission as=
+ a SWP. This paper has been closely reviewed by my advisor Ralph Luetticke =
+who is prominent in this literature, as well as staff members and students =
+in the UCL department at student
+ workshops, and informally by Bank research staff. As such <b>I will not re=
+quest a further peer review.
+</b>I also attach a research summary and confidentially form signed off by =
+Jonathan Haskel (my defacto HOD). Please let me know if you have any furthe=
+r questions.
+<o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Sincere=
+ly, <o:p></o:p></span></p>
+<p class=3D"MsoNormal"><span style=3D"font-size:12.0pt;color:black">Jamie <=
+o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB"><o:p>&nbsp;</o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB">Jamie Lenney<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB">Economist<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB">Bank of England | Threadneedle Str=
+eet | London | EC2R 8AH<o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB">Email:
+</span><a href=3D"mailto:Jamie.Lenney@bankofengland.co.uk"><span style=3D"f=
+ont-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif;mso-fareast-l=
+anguage:EN-GB">Jamie.Lenney@bankofengland.co.uk</span></a><span style=3D"fo=
+nt-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif;color:black;ms=
+o-fareast-language:EN-GB"><o:p></o:p></span></p>
+<p class=3D"MsoNormal" style=3D"margin-bottom:0cm;margin-bottom:.0001pt"><s=
+pan style=3D"font-size:11.0pt;font-family:&quot;Times New Roman&quot;,serif=
+;color:black;mso-fareast-language:EN-GB">Tel: 0203 461 5947<o:p></o:p></spa=
+n></p>
+<p class=3D"MsoNormal"><o:p>&nbsp;</o:p></p>
+</div>
+***************************************************************************=
+********
+<br>
+This e-mail (including any attachments) is intended only for the addressee(=
+s) named above. If you receive this e-mail in error, please immediately con=
+tact the sender and delete this e-mail. Unauthorised use, disclosure, acces=
+s to, storage or copying of this
+ email and any attachments is not permitted and may be unlawful. The Bank o=
+f England is located at Threadneedle Street, London EC2R 8AH. The Prudentia=
+l Regulation Authority is located at 20 Moorgate, London EC2R 6DA. Please v=
+isit www.bankofengland.co.uk.
+<br>
+***************************************************************************=
+********
+</body>
+</html>
+
+--_000_LO2P265MB2989564AD3916F8070A52ABFDD6E9LO2P265MB2989GBRP_--
+
