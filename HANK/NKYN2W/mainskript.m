@@ -12,7 +12,7 @@ UCL=0;
 
 %% Select options
 % Search for steady state and name it
-FindNewSS           = false;
+FindNewSS           = true;
 casename            = '../steadystates/YNfund2W_60_15.mat';
 filename=casename;
 

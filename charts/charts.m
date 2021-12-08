@@ -1,16 +1,24 @@
-
-
 clear all
 close all
 
-NKcol =  [0.2 0.2 1.0];
-YNcol =  [1 0 0.83];
-YN2Wcol= [0.0 0.8 0.0];
+%% IRFs for RANK and TANK
+
+run('../RANK/main.m')
+
+close(figure(101))
+close(figure(102))
+close(figure(103))
+close(figure(104))
 
 %% IRF-HANK
 
 % NK model
-load('../../../steadystates/NKfund_60_15.mat')
+
+HANKcol =  [0. 0.4 0.0];
+
+YN2Wcol= [0.8 0.2 0.6];
+
+load('../HANK/steadystates/NKfund_60_15.mat')
 
 IRF_NK=IRF_state_sparse;
 
@@ -19,62 +27,62 @@ clf
 
 subplot(4,2,1)
 
-plot(IRF_Y,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_Y,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,2)
 
-plot(IRF_PI/100,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_PI/100,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,3)
 
-plot(IRF_C,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_C,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,4)
 
-plot(IRF_I,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_I,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,5)
 
-plot(IRF_N,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_N,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,6)
 
-plot(IRF_W,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_W,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,7)
 
-plot(100*(IRF_LS-par.Labshr),'Color',NKcol,'LineWidth',1.8)
+plot(100*(IRF_LS-par.Labshr),'Color',HANKcol,'LineWidth',1.8)
 
 subplot(4,2,8)
 
-plot(IRF_Y-IRF_N,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_Y-IRF_N,'Color',HANKcol,'LineWidth',1.8)
 
 %%
 
-figure(4) % otehr variables
+figure(4) % other variables
 
 clf
 
 subplot(1,3,1)
-plot(0.25*targets.BY*(IRF_B-IRF_Y),'Color',NKcol,'LineWidth',1.8)
+plot(0.25*targets.BY*(IRF_B-IRF_Y),'Color',HANKcol,'LineWidth',1.8)
 
 subplot(1,3,2)
-plot(IRF_A,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_A,'Color',HANKcol,'LineWidth',1.8)
 
 subplot(1,3,3)
 hold on
-plot(IRF_ra,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_ra,'Color',HANKcol,'LineWidth',1.8)
 
 
 %%
 figure(6)
 clf
-newcolors = [0.99 0.0 0.2;
-    0.90 0.00 0.35;
-    0.80 0.00 0.50;
-    0.70 0.05 0.65;
-    0.60 0.00 0.8;
-    0.5 0.0 0.95];
+newcolors = [1.0 1.0 0.0;
+    0.2 1.0 0.0;
+    0.2 0.4 0.0;
+    0.2 1.0 0.6;
+    0.20 0.00 0.6;
+    0.4 0.0 0.4];
            
 colororder(newcolors)
             
@@ -92,14 +100,14 @@ title('HANK')
 figure(7)
 clf
 
-plot(IRF_giniC,'Color',NKcol,'LineWidth',1.8)
+plot(IRF_giniC,'Color',HANKcol,'LineWidth',1.8)
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% YN model 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-load('../../../steadystates/YNfund_60_15.mat')
+load('../HANK/steadystates/YNfund_60_15.mat')
 
 IRF_YN=IRF_state_sparse;
 
@@ -107,6 +115,8 @@ IRF_W_YN=IRF_W;
 IRF_LS_YN=IRF_LS;
 IRF_Y_YN=IRF_Y;
 IRF_N_YN=IRF_N;
+IRF_C_YN=IRF_C;
+IRF_I_YN=IRF_I;
 mpar_YN=mpar;
 figure(3)
 
@@ -114,13 +124,13 @@ figure(3)
 subplot(4,2,1)
 hold on
 
-plot(IRF_Y,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_Y,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
 title('Output gap')
 
-legend('NK','NK-YN','Location','southeast')
+legend('HANK','HANK-YN','Location','southeast')
 
 ylabel('PP')
 
@@ -129,7 +139,7 @@ subplot(4,2,2)
 
 hold on
 
-plot(IRF_PI/100,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_PI/100,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -139,7 +149,7 @@ title('Inflation')
 subplot(4,2,3)
 
 hold on
-plot(IRF_C,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_C,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 
 hline=refline(0,0);
@@ -152,7 +162,7 @@ ylabel('PP')
 subplot(4,2,4)
 
 hold on
-plot(IRF_I,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_I,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -163,7 +173,7 @@ subplot(4,2,5)
 
 hold on
 
-plot(IRF_N,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_N,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -175,7 +185,7 @@ subplot(4,2,6)
 
 hold on
 
-plot(IRF_W,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_W,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -185,7 +195,7 @@ title('Real wages')
 subplot(4,2,7)
 
 hold on
-plot((IRF_LS-par.Labshr)*100,'Color',YNcol,'LineWidth',1.8)
+plot((IRF_LS-par.Labshr)*100,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -197,7 +207,7 @@ subplot(4,2,8)
 
 hold on
 
-plot(IRF_Y-IRF_N,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_Y-IRF_N,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 hline=refline(0,0);
 hline.Color='black';
@@ -210,17 +220,17 @@ figure(4) % other variables
 subplot(1,3,1)
 
 hold on
-plot(0.25*targets.BY*(IRF_B-IRF_Y),'Color',YNcol,'LineWidth',1.8)
+plot(0.25*targets.BY*(IRF_B-IRF_Y),'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 subplot(1,3,2)
 
 hold on
-plot(IRF_A,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_A,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 subplot(1,3,3)
 
 hold on
-plot(IRF_ra,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_ra,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 
 %%
@@ -242,7 +252,7 @@ title('HANK-YN')
 figure(7)
 
 hold on
-plot(IRF_giniC,'Color',YNcol,'LineWidth',1.8)
+plot(IRF_giniC,'Color',HANKcol,'LineWidth',1.8,'LineStyle','--')
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -250,7 +260,7 @@ plot(IRF_giniC,'Color',YNcol,'LineWidth',1.8)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-load('../../../steadystates/YNfund2W_60_15.mat')
+load('../HANK/steadystates/YNfund2W_60_15.mat')
 
 IRF_YN2W=IRF_state_sparse;
 
@@ -258,7 +268,7 @@ figure(5)
 clf
 
 newcolors = [YN2Wcol;
-             YNcol];
+             HANKcol];
 
             colororder(newcolors)
             
@@ -304,7 +314,7 @@ plot(IRF_Cy,'SeriesIndex',1,'LineWidth',1.8,'LineStyle',':')
 legend('$w_e \ne w_y$ - Expans.','$w_e \ne w_y$ - Prod.','Location','southeast','AutoUpdate','off','Interpreter','latex')
 
 plot(IRF_C,'SeriesIndex',1,'LineWidth',1.8)
-plot(IRF_YN(end-mpar_YN.oc+12,1:end-1)*100,'SeriesIndex',2,'LineWidth',1.8)
+plot(IRF_C_YN,'SeriesIndex',2,'LineWidth',1.8)
 
 hline=refline(0,0);
 hline.Color='black';
@@ -320,7 +330,7 @@ subplot(4,2,4)
 hold on
 plot(IRF_I,'SeriesIndex',1,'LineWidth',1.8)
 
-plot(IRF_YN(end-mpar_YN.oc+10,1:end-1)*100,'SeriesIndex',2,'LineWidth',1.8)
+plot(IRF_I_YN,'SeriesIndex',2,'LineWidth',1.8)
 
 hline=refline(0,0);
 hline.Color='black';
@@ -422,7 +432,7 @@ hline.Color='black';
 
 title('\textbf{Illiquid return} $r_a$','Interpreter','latex')
 ylabel('PP')
-legend('NK','NK-YN','Location','southeast')
+legend('HANK','HANK-YN','Location','southeast')
 
 %legend('NK','NK-YN','NK-YN','Location','southeast')
 
@@ -436,7 +446,7 @@ hline.Color='black';
 
 title('Consumption GINI coeffecient')
 ylabel('')
-legend('NK','NK-YN','Location','northeast')
+legend('HANK','HANK-YN','Location','northeast')
 
 %%
 
@@ -444,8 +454,8 @@ figure(3)
 
 h = gcf;
 set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*1.3;
-h.Position(4) =h.Position(4)*1.3;
+h.Position(3) =h.Position(3)*3;
+h.Position(4) =h.Position(4)*3;
 pos = get(h,'Position');
 set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_HANK','-dpdf','-r0')
@@ -464,8 +474,8 @@ figure(5)
 
 h = gcf;
 set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*1.3;
-h.Position(4) =h.Position(4)*1.3;
+h.Position(3) =h.Position(3)*3.0;
+h.Position(4) =h.Position(4)*3.0;
 pos = get(h,'Position');
 set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_HANK2W','-dpdf','-r0')

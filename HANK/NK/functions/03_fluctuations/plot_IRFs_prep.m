@@ -63,7 +63,7 @@ Deficit=100*(M(2:end) - M(1:end-1)./PI)./Y;
 IRF_LP=100*100*(((Q(2:end)+R(2:end))./Q(1:end-1)-RB(1:end-1)./PI(2:end))-((1+par.R/par.Q)-par.RB));
 IRF_LS=(exp(IRF_N/100)'*grid.N).*(exp(IRF_W/100)'*W_fc)./(Output*exp(IRF_Y/100)');
 
-IRF_A=100*((qs*exp(IRF_qs/100)+par.Q*grid.K*exp(IRF_qk/100).*exp(IRF_state_sparse(mpar.numstates-6,2:end)))/targets.A - 1);
+IRF_A=100*((qs*exp(IRF_qs/100)+par.Q*grid.K*exp(IRF_qk/100).*exp(IRF_state_sparse(mpar.numstates-9,2:end)))/targets.A - 1);
 
 %% consumpton by wealth
 

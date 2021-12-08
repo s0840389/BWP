@@ -4,13 +4,19 @@ Author: Jamie lenney
 Date: 03-Nov-2021
 
 
+Software required
+
+    Matlab incl. Parelelisation toolboox, econometrics toolbox, machine learning toolbox and optimisation toolbox
+
+    Code checked on Matlab 2019B 64 bit.   
+
 Folder structure
 
     1) charts 
 
     Contains matlab and R codes to generate figures in text
 
-        charts.m - creates most IRF charts in section 4
+        charts.m - creates charts in section 4
 
         decomp_charts.m - Does the partial eq consumption decomp of the HANK IRF's (figure 7)
 

@@ -3,7 +3,7 @@ function [IRF_Cdecomp,IRF_C]=partial_decomp_YN(SS,T,Tf,Irb,Ira,Ilab,Itau)
 %clc
 %clear all
 
-addpath(genpath('../HANKYN/functions'))
+addpath(genpath('../HANK/NKYN/functions'))
 
 %SS='../../steadystates/NKfund_60_15.mat';
 %T=101;
@@ -61,13 +61,13 @@ RB=par.RB*exp(Irb*IRF_decomp(mpar.numstates-1,1:end-1));
 
 PI=par.PI*exp(Irb*IRF_decomp(end-mpar.oc+2,1:end-1));
 
-W=par.W*exp(Ilab*IRF_decomp(mpar.numstates-2,2:end));
+W=par.W*exp(Ilab*IRF_decomp(mpar.numstates-5,2:end));
 
-N=grid.N*exp(Ilab*IRF_decomp(end-mpar.oc+8,1:end-1));
+N=grid.N*exp(Ilab*IRF_decomp(end-mpar.oc+7,1:end-1));
 
-tau=par.tau*exp(Itau*IRF_decomp(mpar.numstates-7,2:end));
+tau=par.tau*exp(Itau*IRF_decomp(mpar.numstates-10,2:end));
 
-ra=par.R*exp(Ira*IRF_decomp(end-mpar.oc+11,1:end-1));
+ra=par.R*exp(Ira*IRF_decomp(end-mpar.oc+10,1:end-1));
 
 
 f = waitbar(0,'1','Name','Computing value fns',...

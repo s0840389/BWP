@@ -52,7 +52,7 @@ IRF_giniC=100*IRF_state_sparse(end-mpar.oc+15,1:end-1);
 IRF_M=100*grid.m*IRF_distr((1:mpar.nm),2:end)./(targets.B+par.ABS*grid.K);
 M=grid.m*IRF_distr((1:mpar.nm),1:end)+targets.B-par.ABS*(K(1:end)-grid.K);
 
-IRF_A=((qs*exp(IRF_qs/100)+par.Q*exp(IRF_qk/100)*grid.K.*exp(IRF_state_sparse(mpar.numstates-6,2:end)))/targets.A-1)*100;
+IRF_A=((qs*exp(IRF_qs/100)+par.Q*exp(IRF_qk/100)*grid.K.*exp(IRF_state_sparse(mpar.numstates-9,2:end)))/targets.A-1)*100;
 
 %IRF_C=100*((Y-G-I)./(Output-par.G-par.delta*grid.K)-1);
 
@@ -96,20 +96,49 @@ plot(100*IRF_hhc(13:18,:)')
 legend(string(targets.wpcts))
 
 
+%% income irf's
+NN=mpar.nh*mpar.nk*mpar.nm;
+
+tirf=length(IRF_Y);
+y_irf=zeros(mpar.nm,mpar.nk,mpar.nh,tirf);
+
+
+incss=par.W*par.tau/par.H*meshes.h+meshes.m(:,:,:)*(par.RB-1) +meshes.k(:,:,:)*(par.R) +meshes.m(:,:,:).*(meshes.m(:,:,:)<0)*par.borrwedge;
+  
+incss=incss(:);
+
+for t=1:tirf
+
+
+  WW=par.W*exp(IRF_W(t)/100)*par.tau.*exp(IRF_tau(t)/100).*exp(IRF_N(t)/100)/par.H;
+  
+  y_irf(:,:,:,t)= WW*meshes.h(:,:,:) +meshes.m(:,:,:)*(par.RB-1 + IRF_state_sparse(mpar.numstates-1,t))/(1+IRF_PI(:,t)/10000) +meshes.k(:,:,:)*(par.R*exp(IRF_ra(t)/100)) +meshes.m(:,:,:).*(meshes.m(:,:,:)<0)*par.borrwedge;
+  
+
+end
+
+x=css(:);
+
+xc=exp(IRF_hhc(1:6,:)).*x(targets.cinds(1:6));
+
+x=reshape(y_irf,NN,tirf);
+
+s_irf=xc./x(targets.cinds(1:6));
+
+
 %% Ginis
 
 IRF_giniw=zeros(mpar.maxlag-1,1); % wealth
 
 IRF_top10=zeros(mpar.maxlag-1,1); % wealth top 10
 
-%IRF_giniC=zeros(mpar.maxlag-1,1); % consumption
 
 for i=1:mpar.maxlag-1
-IRF_giniw(i)=100*(networthgini(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mesh,mpar,Copula)-targets.GiniW);
+%IRF_giniw(i)=100*(networthgini(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mesh,mpar,Copula)-targets.GiniW);
 
-IRF_giniC(i)=100*(consumptiongini(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mpar,Copula,c_irfl(:,:,:,i))-targets.GiniC);
+%IRF_giniC(i)=100*(consumptiongini(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mpar,Copula,c_irfl(:,:,:,i))-targets.GiniC);
 
-IRF_top10(i)=100*(top10W(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mesh,mpar,Copula)-targets.Top10);
+%IRF_top10(i)=100*(top10W(IRF_distr(:,i+1)+Xss(1:mpar.nm+mpar.nk+mpar.nh),mesh,mpar,Copula)-targets.Top10);
 end
 
 
