@@ -236,20 +236,24 @@ title('Labour productivity')
 
 figure(1)
 h = gcf;
-set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*3;
-h.Position(4) =h.Position(4)*3;
+set(h,'Units','centimeters');
+h.Position(1) =0;
+h.Position(2) =0;
+h.Position(3) =20;
+h.Position(4) =20;
 pos = get(h,'Position');
-set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
 print(h,'../charts/IRF_RANK','-dpdf','-r0')
 
 figure(2)
 h = gcf;
-set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*3;
-h.Position(4) =h.Position(4)*3;
+set(h,'Units','centimeters');
+h.Position(1) =0;
+h.Position(2) =0;
+h.Position(3) =20;
+h.Position(4) =20;
 pos = get(h,'Position');
-set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
 print(h,'../charts/IRF_WCNK','-dpdf','-r0')
 
 

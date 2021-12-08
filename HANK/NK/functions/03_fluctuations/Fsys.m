@@ -81,17 +81,20 @@ marginal_mind = (1:mpar.nm-1);
 marginal_kind = (mpar.nm-1+(1:mpar.nk-1));
 marginal_hind = (mpar.nm+mpar.nk-2 + (1:(mpar.nh-1)));
 
-tauind=NxNx+1;
-Kind=NxNx+2;
-qkind=NxNx+3;
-qsind=NxNx+4;
-Invstind=NxNx+5;
-Wind=NxNx+6;
-Gind=NxNx+7;
-Zyind=NxNx+8;
-Ziind=NxNx+9;
-RBind = NxNx+10;
-Sind  = NxNx+11;
+Zmkind=NxNx+1;
+Zrpind=NxNx+2;
+Zwind=NxNx+3;
+tauind=NxNx+4;
+Kind=NxNx+5;
+qkind=NxNx+6;
+qsind=NxNx+7;
+Invstind=NxNx+8;
+Wind=NxNx+9;
+Gind=NxNx+10;
+Zyind=NxNx+11;
+Ziind=NxNx+12;
+RBind = NxNx+13;
+Sind  = NxNx+14;
 
 %% Control Variables (Change Value functions according to sparse polynomial)
 Control      = Control_sparse;
@@ -102,10 +105,20 @@ Controlminus(end-mpar.oc+1:end)  = ControlSS(end-mpar.oc+1:end) + (Controlminus_
 
 %% State Variables
 % read out marginal histogramm in t+1, t
-Distribution      = StateSS(1:end-11) + Gamma_state * State(1:NxNx);
-Distributionminus = StateSS(1:end-11) + Gamma_state * Stateminus(1:NxNx);
+Distribution      = StateSS(1:end-14) + Gamma_state * State(1:NxNx);
+Distributionminus = StateSS(1:end-14) + Gamma_state * Stateminus(1:NxNx);
 
 % Aggregate Endogenous States
+
+Zmk      = exp(StateSS(end-13) + (State(end-13)));
+Zmkminus = exp(StateSS(end-13) + (Stateminus(end-13)));
+
+Zrp      = exp(StateSS(end-12) + (State(end-12)));
+Zrpminus = exp(StateSS(end-12) + (Stateminus(end-12)));
+
+Zw      = exp(StateSS(end-11) + (State(end-11)));
+Zwminus = exp(StateSS(end-11) + (Stateminus(end-11)));
+
 tau      = StateSS(end-10) + (State(end-10));
 tauminus = StateSS(end-10) + (Stateminus(end-10));
 
@@ -254,7 +267,7 @@ JDminus = diff(diff(diff(cumdist,1,1),1,2),1,3);
 [meshes.m,meshes.k,meshes.h] = ndgrid(grid.m,grid.k,grid.h);
 
 % Marginal cost
-mc              =  par.mu- (par.beta * log(PI) - log(PIminus))/par.kappa;
+mc             = -log(Zmkminus) + par.mu- (par.beta * log(PI) - log(PIminus))/par.kappa;
 
 % (3) wage philips curve
 
@@ -262,7 +275,7 @@ LHS(nx+PIwind)       = PIwminus;
 
 muhat=par.gamma*log(Nminus/grid.N)-log(W/par.W);
 
-RHS(nx+PIwind)    =  par.beta*PIw + par.kappa_w*muhat;
+RHS(nx+PIwind)    =  par.beta*PIw + par.kappa_w*muhat +par.kappa_w*log(Zwminus);
 
 %LHS(nx+PIwind)=log(W/par.W);
 
@@ -492,7 +505,7 @@ RHS(tauind) = ((1-tauminus)/(1-par.tau))^par.rho_tax *((Bminus/targets.B)^par.ga
 
 % (14) Resulting Price of Capital
 LHS(qkind)       = qk*Ziminus;
-RHS(qkind)=1+par.phi*log(Invminus/Invstminus)+par.phi/2*log(Invminus/Invstminus)^2- par.phi/(1+ra)*Inv/Invminus*log(Inv/Invminus);
+RHS(qkind)=1+par.phi*log(Invminus/Invstminus)+par.phi/2*log(Invminus/Invstminus)^2- par.phi/(Zrp*(1+ra))*Inv/Invminus*log(Inv/Invminus);
 
 % (15) expected price of capital def
 
@@ -502,7 +515,7 @@ RHS(nx+Eqind)=qk;
 % (16) expected price of capital
 
  LHS(nx+Invind)=Eqminus;
-  RHS(nx+Invind)=1/(1+ra)*((R+par.delta)+(1-par.delta)*Eq);
+  RHS(nx+Invind)=1/(Zrp*(1+ra))*((R+par.delta)+(1-par.delta)*Eq);
 
 % (17) capital lom
 
@@ -557,16 +570,24 @@ RHS(nx+hhcind)=par.nu*c_a_star(targets.cinds)+(1-par.nu)*c_n_star(targets.cinds)
 
  % other states
 
- RHS(Ziind)=log(Zi);
-LHS(Ziind)=par.rhozi*log(Ziminus);
+    RHS(Ziind)=log(Zi);
+    LHS(Ziind)=par.rhozi*log(Ziminus);
 
+    RHS(Zyind)=log(Zy);
+    LHS(Zyind)=par.rhozy*log(Zyminus);
 
- RHS(Zyind)=log(Zy);
-LHS(Zyind)=par.rhozy*log(Zyminus);
+    RHS(Zwind)=log(Zw);
+    LHS(Zwind)=par.rhozw*log(Zwminus);
+
+    RHS(Zmkind)=log(Zmk);
+    LHS(Zmkind)=par.rhozmk*log(Zmkminus);
+
+    RHS(Zrpind)=log(Zrp);
+    LHS(Zrpind)=par.rhozrp*log(Zrpminus);
 
 
 %% Difference
-Difference=((LHS-RHS));
+    Difference=((LHS-RHS));
 
 end
 function [ weight,index ] = genweight( x,xgrid )

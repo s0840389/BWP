@@ -5,6 +5,7 @@ invmutil = @(mu)((1./mu).^(1/par.xi));
 Xss=[squeeze(sum(sum(joint_distr,2),3)); ... % marginal distribution liquid
     squeeze(sum(sum(joint_distr,1),3))'; ... % marginal distribution illiquid
     squeeze(sum(sum(joint_distr,2),1)); ... % marginal distribution productivity
+    0;0;0;
     par.tau; log(grid.K); log(par.Q); log(qs);
     log(targets.Inv); log(par.W);
     log(par.G);0;0;log(par.RB); 0];

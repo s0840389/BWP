@@ -91,9 +91,12 @@ par.kappa_w=(1-par.thetaw)*(1-par.beta*par.thetaw)/par.thetaw;
 
 % persistence params
 
-par.rhog=0.95; % gov spending 
-par.rhozy=0.95; % tfp 
-par.rhozi=0.95; % investmetn specific
+par.rhog=0.90; % gov spending 
+par.rhozy=0.90; % tfp 
+par.rhozi=0.90; % investmetn specific
+par.rhozmk=0.90; % markup shock
+par.rhozrp=0.90; % risk premium shock
+par.rhozw=0.90; % wage markup shock
 
 %% Returns
 par.PI  = 1.00^.25;     % Gross inflation

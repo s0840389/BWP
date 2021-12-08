@@ -453,11 +453,13 @@ legend('HANK','HANK-YN','Location','northeast')
 figure(3)
 
 h = gcf;
-set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*3;
-h.Position(4) =h.Position(4)*3;
+set(h,'Units','centimeters');
+h.Position(1) =0;
+h.Position(2) =0;
+h.Position(3) =20;
+h.Position(4) =20;
 pos = get(h,'Position');
-set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_HANK','-dpdf','-r0')
 
 figure(4)
@@ -473,21 +475,25 @@ print(h,'IRF_savings','-dpdf','-r0')
 figure(5)
 
 h = gcf;
-set(h,'Units','Inches');
-h.Position(3) =h.Position(3)*3.0;
-h.Position(4) =h.Position(4)*3.0;
+set(h,'Units','centimeters');
+h.Position(1) =0;
+h.Position(2) =0;
+h.Position(3) =20;
+h.Position(4) =20;
 pos = get(h,'Position');
-set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_HANK2W','-dpdf','-r0')
 
 figure(6)
 
 h = gcf;
-set(h,'Units','Inches');
+set(h,'Units','centimeters');
 pos = get(h,'Position');
-h.Position(3) =h.Position(3)*1.2;
-h.Position(4) =h.Position(4)*0.9;
-set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
+h.Position(1) =0;
+h.Position(2) =0;
+h.Position(3) =20;
+h.Position(4) =12;
+set(h,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_cIRFS','-dpdf','-r0')
 
 
@@ -500,3 +506,7 @@ pos = get(h,'Position');
 %h.Position(4) =h.Position(4)*0.9;
 set(h,'PaperPositionMode','Auto','PaperUnits','Inches','PaperSize',[pos(3), pos(4)])
 print(h,'IRF_CGINI','-dpdf','-r0')
+
+
+run('otherIRFs.m')
+
