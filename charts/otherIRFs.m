@@ -2,7 +2,7 @@ clear all
 
 
 IRFposNK=[0 4 3 2 12 11 13];
-sh=[0.0026 -0.003 -0.005 -0.022 0.002 0.059 0.0167];
+sh=[0.0026 -0.02 -0.005 -0.022 0.002 0.059 0.0167];
 IRFname={'MP','G','TFP','IST','RP','W','MK'};
 IRFname2={'Monetary Policy','Gov. spending','TFP','Investment-specific','Risk premium','Wage markup','Markup'};
 

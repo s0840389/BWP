@@ -6,9 +6,12 @@ Date: 03-Nov-2021
 
 Software required
 
-    Matlab incl. Parelelisation toolboox, econometrics toolbox, machine learning toolbox and optimisation toolbox
-
-    Code checked on Matlab 2019B 64 bit.   
+    MATLAB                                                Version 9.9         (R2020b)
+    Econometrics Toolbox                                  Version 5.5         (R2020b)
+    Optimization Toolbox                                  Version 9.0         (R2020b)
+    Parallel Computing Toolbox                            Version 7.3         (R2020b)
+    Statistics and Machine Learning Toolbox               Version 12.0        (R2020b)
+    R + selected packages
 
 Folder structure
 
@@ -16,7 +19,7 @@ Folder structure
 
     Contains matlab and R codes to generate figures in text
 
-        charts.m - creates charts in section 4
+        charts.m - creates the charts in section 4
 
         decomp_charts.m - Does the partial eq consumption decomp of the HANK IRF's (figure 7)
 
@@ -25,8 +28,7 @@ Folder structure
         VAR/main.m - Estimates the VAR in figure 1. [Data included] 
 
         ls_y_correlation.r - correlation between output and labour share, and standard deviations
-
-                
+               
 
     2) HANK 
 
@@ -55,10 +57,3 @@ definess_pars.m - is the file where parameter value and grid sizes are set.
         NKYNcap - two agent baby hank model with workers and capatalists augmented with expansionary labour
 
 
-    4) DynareCode 
-    
-    Contains the dynare mod files and data used to estimate the RANK parameters. 
-
-    DyamicsNK.mod - main estimation file for the NK model
-    DyamicsNKYN.mod - main estimation file for the NK-YN model
-    usmdodel_data.mat - data to estimate
